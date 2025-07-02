@@ -7,11 +7,9 @@ def run(working_dir: str, config_dir: str | None = None, container_name: str = "
     """
 
     cwd = pathlib.Path.cwd()
-    working_dir = pathlib.Path(working_dir).relative_to(cwd)
-    config_dir = pathlib.Path(config_dir).relative_to(cwd)
-    print(working_dir)
-    print(config_dir)
+    working_dir = pathlib.Path(working_dir).resolve().relative_to(cwd)
+    config_dir = pathlib.Path(config_dir).resolve().relative_to(cwd)
 
     subprocess.run(
-        ["udocker", "run", "-v", f"{cwd}:/run", container_name, "-d", working_dir, config_dir],
+        ["udocker", "run", "-v", f"{cwd}:/run", container_name, "-d", f"/run/{working_dir}" , f"/run/{config_dir}"],
     )
