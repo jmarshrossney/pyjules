@@ -1,5 +1,5 @@
-from .setup import setup
-from .run import run
+from ._setup import setup
+from ._run import run
 
 def hello():
     print("Hello from pyjules!")
