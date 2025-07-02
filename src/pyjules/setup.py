@@ -27,7 +27,7 @@ def setup(image_file: str | PathLike, name: str = "JULES") -> None:
     )
 
     subprocess.run(
-        ["udocker", "verify", image_name],
+        ["udocker", "verify", name],
     )
 
 

@@ -32,8 +32,8 @@ def run(run_dir: str | PathLike, namelists_dir: str | PathLike | None = None, co
         raise InvalidName(exc.stderr) from exc
 
     cwd = pathlib.Path.cwd()
-    run_dir = Path(run_dir).resolve()
-    namelists_dir = run_dir if namelists_dir is None else Path(namelists_dir).resolve()
+    run_dir = pathlib.Path(run_dir).resolve()
+    namelists_dir = run_dir if namelists_dir is None else pathlib.Path(namelists_dir).resolve()
 
     # We will mount the cwd when running the container. Hence, run_dir and
     # namelists_dir must be subdirectories of cwd!
@@ -55,7 +55,7 @@ def run(run_dir: str | PathLike, namelists_dir: str | PathLike | None = None, co
             f"{cwd}:{mount_point}",
             container_name,
             "-d",
-            mount_point / working_dir,
+            mount_point / run_dir,
             mount_point / namelists_dir
         ],
     )
