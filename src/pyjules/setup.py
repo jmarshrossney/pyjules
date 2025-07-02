@@ -12,7 +12,7 @@ def setup(image_path: str, image_name: str = "jules") -> None:
     # TODO: handle stdout/stderr
 
     subprocess.run(
-        ["udocker", "install"],
+        ["udocker", "-D", "install"],
     )
 
     subprocess.run(
